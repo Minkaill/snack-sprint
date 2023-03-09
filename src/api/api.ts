@@ -1,5 +1,8 @@
 import axioss from "axios";
 import Cookies from "universal-cookie";
+import { userData } from "../local_hooks/helper";
+
+const { token } = userData();
 
 // Создание экземпляра axios с базовым URL
 export const axios = axioss.create({
@@ -9,7 +12,7 @@ export const axios = axioss.create({
 export const axiosPrivate = axioss.create({
   baseURL: "https://unifood.onrender.com",
   headers: {
-    Authorization: "Bearer " + 1,
+    Authorization: "Bearer " + token,
   },
 });
 
