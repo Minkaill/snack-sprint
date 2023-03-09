@@ -1,0 +1,31 @@
+.wrapper {
+  width: 750px;
+  display: flex;
+  margin: 80px auto 0;
+  flex-direction: column;
+  border-radius: 20px;
+  background-color: rgba(73, 69, 68, 1);
+  padding: 40px 40px;
+
+  span {
+    display: flex;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+    align-items: center;
+    margin-top: 11px;
+    gap: 5px;
+    font-size: 14px;
+
+    a {
+      cursor: pointer;
+      color: white;
+    }
+  }
+
+  .select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+}
