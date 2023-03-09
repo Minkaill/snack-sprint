@@ -15,7 +15,11 @@ const SignUp = () => {
         Уже есть аккаунт? <Link to="/sign-in">Войти</Link>
       </span>
 
+      <h1>ЗАРЕГИСТРИРОВАТЬСЯ</h1>
+
       <Form />
+
+      <button className={styles.btn}>Регистрация</button>
     </div>
   );
 };

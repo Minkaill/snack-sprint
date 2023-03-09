@@ -18,3 +18,15 @@
     margin-bottom: 24px;
   }
 }
+
+@media (max-width: 755px) {
+  .container {
+    width: 277px;
+    display: flex;
+    justify-content: center;
+    input {
+      width: 277px;
+      height: 52px;
+    }
+  }
+}
