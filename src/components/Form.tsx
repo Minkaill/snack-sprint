@@ -13,7 +13,7 @@ interface IUser {
 }
 
 interface IForm {
-  select?: string;
+  select: string;
 }
 
 const Form: React.FC<IForm> = ({ select }) => {

@@ -10,8 +10,12 @@ const SignUp = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.select}>
-        <Button setSelect={setSelect}>Стать клиентом</Button>
-        <Button setSelect={setSelect}>Для ресторана</Button>
+        <Button select={select} setSelect={setSelect}>
+          Стать клиентом
+        </Button>
+        <Button select={select} setSelect={setSelect}>
+          Для ресторана
+        </Button>
       </div>
       <span>
         Уже есть аккаунт? <Link to="/sign-in">Войти</Link>
