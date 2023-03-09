@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  label {
+    font-weight: 600;
+    margin-bottom: 17px;
+  }
+
+  input {
+    width: 355px;
+    height: 52px;
+    background-color: #504b4a;
+    border-radius: 15px;
+    border: 1px solid rgba(112, 111, 111, 1);
+    color: white;
+    font-size: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+}
