@@ -5,11 +5,13 @@ import Button from "../components/Button";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
+  const [select, setSelect] = React.useState<string>("Стать клиентом");
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.select}>
-        <Button>Стать клиентом</Button>
-        <Button>Для ресторана</Button>
+        <Button setSelect={setSelect}>Стать клиентом</Button>
+        <Button setSelect={setSelect}>Для ресторана</Button>
       </div>
       <span>
         Уже есть аккаунт? <Link to="/sign-in">Войти</Link>
@@ -17,7 +19,7 @@ const SignUp = () => {
 
       <h1>ЗАРЕГИСТРИРОВАТЬСЯ</h1>
 
-      <Form />
+      <Form select={select} />
 
       <button className={styles.btn}>Регистрация</button>
     </div>

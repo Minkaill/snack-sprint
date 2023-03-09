@@ -9,9 +9,14 @@ interface IUser {
   adress: string;
   email: string;
   password: string;
+  restaurant: string;
 }
 
-const Form = () => {
+interface IForm {
+  select?: string;
+}
+
+const Form: React.FC<IForm> = ({ select }) => {
   const [user, setUser] = React.useState<IUser>({
     name: "",
     phone: "",
@@ -19,6 +24,7 @@ const Form = () => {
     adress: "",
     email: "",
     password: "",
+    restaurant: "",
   });
 
   const handleUserChange = ({
@@ -33,12 +39,21 @@ const Form = () => {
 
   return (
     <form className={styles.form}>
-      <Input
-        name="name"
-        label="Имя"
-        value={user.name}
-        handleUserChange={handleUserChange}
-      />
+      {select === "Стать клиентом" ? (
+        <Input
+          name="name"
+          label="Имя"
+          value={user.name}
+          handleUserChange={handleUserChange}
+        />
+      ) : (
+        <Input
+          name="restaurant"
+          label="Название ресторана"
+          value={user.restaurant}
+          handleUserChange={handleUserChange}
+        />
+      )}
       <Input
         name="phone"
         label="Номер телефона"
