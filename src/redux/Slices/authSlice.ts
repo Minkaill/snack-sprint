@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { authState } from "../../types/IUser";
-import { signUp } from "../Actions/authAction";
+import { signUpCafe, signUpClient } from "../Actions/authAction";
 
 const initialState: authState = {
   data: null,
   isLoading: false,
-  isAuth: false,
 };
 
 const authSlice = createSlice({
@@ -14,17 +13,26 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(signUp.pending, (state) => {
+      .addCase(signUpClient.pending, (state) => {
         state.isLoading = true;
-        state.isAuth = false;
       })
-      .addCase(signUp.fulfilled, (state, action) => {
-        state.data = action.payload;
-        state.isAuth = true;
+      .addCase(signUpClient.fulfilled, (state) => {
+        window.location.href = "/sign-in";
         state.isLoading = false;
       })
-      .addCase(signUp.rejected, (state) => {
-        state.isAuth = false;
+      .addCase(signUpClient.rejected, (state) => {
+        state.isLoading = true;
+        state.data = null;
+      })
+
+      .addCase(signUpCafe.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(signUpCafe.fulfilled, (state) => {
+        window.location.href = "/";
+        state.isLoading = false;
+      })
+      .addCase(signUpCafe.rejected, (state) => {
         state.isLoading = true;
         state.data = null;
       });

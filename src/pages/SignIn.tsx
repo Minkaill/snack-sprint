@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { FormValues } from "../types/FormValues";
 
 interface IUser {
-  email: string;
+  mail: string;
   password: string;
 }
 
@@ -19,7 +19,7 @@ const SignIn = () => {
     mode: "onBlur",
   });
   const onSubmit = () => console.log();
-  const [user, setUser] = React.useState<IUser>({ email: "", password: "" });
+  const [user, setUser] = React.useState<IUser>({ mail: "", password: "" });
 
   const handleUserChange = ({
     target,
@@ -40,11 +40,11 @@ const SignIn = () => {
           register={register}
           name="email"
           label="email"
-          value={user.email}
+          value={user.mail}
           handleUserChange={handleUserChange}
         />
         <div className={styles.error}>
-          {errors?.email && <p>{errors?.email.message}</p>}
+          {errors?.mail && <p>{errors?.mail.message}</p>}
         </div>
         <Input
           register={register}

@@ -2,7 +2,7 @@ export type IField = {
   name: string;
   phone: string;
   city: string;
-  adress: string;
+  address: string;
   mail: string;
   password: string;
 };

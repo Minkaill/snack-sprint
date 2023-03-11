@@ -1,9 +1,9 @@
 export interface FormValues {
-  name?: string;
-  restaurant?: string;
+  name: string;
+  restaurant: string;
   phone: string;
   city: string;
-  adress: string;
-  email: string;
+  address: string;
+  mail: string;
   password: string;
 }

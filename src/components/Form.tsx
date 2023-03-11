@@ -1,15 +1,20 @@
 import React from "react";
-import { useForm, UseFormRegister } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import styles from "../styles/Form.module.scss";
 import Input from "./Input";
 import { IUser } from "../types/IUser";
 import { FormValues } from "../types/FormValues";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
+import { signUpCafe, signUpClient } from "../redux/Actions/authAction";
 
 interface IForm {
   select: string;
 }
 
 const Form: React.FC<IForm> = ({ select }) => {
+  const { data } = useAppSelector((state) => state.user);
+  console.log(data);
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -17,17 +22,29 @@ const Form: React.FC<IForm> = ({ select }) => {
   } = useForm<FormValues>({
     mode: "onBlur",
   });
-  const onSubmit = () => console.log();
 
   const [user, setUser] = React.useState<IUser>({
     name: "",
     phone: "",
     city: "",
-    adress: "",
-    email: "",
+    address: "",
+    mail: "",
     password: "",
-    restaurant: "",
   });
+
+  const onSubmit = () => {
+    const field = {
+      name: user.name,
+      phone: user.phone,
+      city: user.city,
+      address: user.address,
+      mail: user.mail,
+      password: user.password,
+    };
+    select === "Стать клиентом"
+      ? dispatch(signUpClient(field))
+      : dispatch(signUpCafe(field));
+  };
 
   const handleUserChange = ({
     target,
@@ -41,33 +58,16 @@ const Form: React.FC<IForm> = ({ select }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      {select === "Стать клиентом" ? (
-        <>
-          <Input
-            register={register}
-            name="name"
-            label="Имя"
-            value={user.name}
-            handleUserChange={handleUserChange}
-          />
-          <div className={styles.error}>
-            {errors?.name && <p>{errors?.name.message}</p>}
-          </div>
-        </>
-      ) : (
-        <>
-          <Input
-            register={register}
-            name="restaurant"
-            label="Название ресторана"
-            value={user.restaurant}
-            handleUserChange={handleUserChange}
-          />
-          <div className={styles.error}>
-            {errors?.restaurant && <p>{errors?.restaurant.message}</p>}
-          </div>
-        </>
-      )}
+      <Input
+        register={register}
+        name="name"
+        label="Имя"
+        value={user.name}
+        handleUserChange={handleUserChange}
+      />
+      <div className={styles.error}>
+        {errors?.name && <p>{errors?.name.message}</p>}
+      </div>
       <Input
         register={register}
         name="phone"
@@ -90,23 +90,23 @@ const Form: React.FC<IForm> = ({ select }) => {
       </div>
       <Input
         register={register}
-        name="adress"
+        name="address"
         label="Адресс"
-        value={user.adress}
+        value={user.address}
         handleUserChange={handleUserChange}
       />
       <div className={styles.error}>
-        {errors?.adress && <p>{errors?.adress.message}</p>}
+        {errors?.address && <p>{errors?.address.message}</p>}
       </div>
       <Input
         register={register}
-        name="email"
+        name="mail"
         label="Электронная почта"
-        value={user.email}
+        value={user.mail}
         handleUserChange={handleUserChange}
       />
       <div className={styles.error}>
-        {errors?.email && <p>{errors?.email.message}</p>}
+        {errors?.mail && <p>{errors?.mail.message}</p>}
       </div>
       <Input
         register={register}
