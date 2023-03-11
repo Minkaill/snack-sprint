@@ -3,6 +3,7 @@ import styles from "../styles/SignUp.module.scss";
 import Form from "../components/Form";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../hooks/hooks";
 
 const SignUp = () => {
   const [select, setSelect] = React.useState<string>("Стать клиентом");
@@ -24,8 +25,6 @@ const SignUp = () => {
       <h1>ЗАРЕГИСТРИРОВАТЬСЯ</h1>
 
       <Form select={select} />
-
-      <button className={styles.btn}>Регистрация</button>
     </div>
   );
 };

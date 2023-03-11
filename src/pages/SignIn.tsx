@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "../styles/SignIn.module.scss";
-import Form from "../components/Form";
 import Input from "../components/Input";
-import Button from "../components/Button";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { FormValues } from "../types/FormValues";
 
 interface IUser {
   email: string;
@@ -11,6 +11,14 @@ interface IUser {
 }
 
 const SignIn = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<FormValues>({
+    mode: "onBlur",
+  });
+  const onSubmit = () => console.log();
   const [user, setUser] = React.useState<IUser>({ email: "", password: "" });
 
   const handleUserChange = ({
@@ -27,21 +35,29 @@ const SignIn = () => {
     <div className={styles.wrapper}>
       <h1>Войти</h1>
 
-      <form>
+      <form className={styles.form}>
         <Input
+          register={register}
           name="email"
           label="email"
           value={user.email}
           handleUserChange={handleUserChange}
         />
+        <div className={styles.error}>
+          {errors?.email && <p>{errors?.email.message}</p>}
+        </div>
         <Input
+          register={register}
           name="password"
           label="password"
           value={user.password}
           handleUserChange={handleUserChange}
         />
+        <div className={styles.error}>
+          {errors?.password && <p>{errors?.password.message}</p>}
+        </div>
+        <input disabled={!isValid} type="submit" value="Войти" />
       </form>
-      <button className={styles.btn}>Войти</button>
       <span>
         Нет аккаунта? <Link to="/sign-up">Зарегистрироваться</Link>
       </span>
