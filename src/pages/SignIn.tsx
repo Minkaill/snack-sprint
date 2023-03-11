@@ -4,6 +4,8 @@ import Input from "../components/Input";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { FormValues } from "../types/FormValues";
+import { useAppDispatch } from "../hooks/hooks";
+import { signInClient } from "../redux/Actions/authAction";
 
 interface IUser {
   mail: string;
@@ -11,6 +13,7 @@ interface IUser {
 }
 
 const SignIn = () => {
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -18,8 +21,11 @@ const SignIn = () => {
   } = useForm<FormValues>({
     mode: "onBlur",
   });
-  const onSubmit = () => console.log();
   const [user, setUser] = React.useState<IUser>({ mail: "", password: "" });
+
+  const onSubmit = () => {
+    dispatch(signInClient({ mail: user.mail, password: user.password }));
+  };
 
   const handleUserChange = ({
     target,
@@ -35,11 +41,11 @@ const SignIn = () => {
     <div className={styles.wrapper}>
       <h1>Войти</h1>
 
-      <form className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <Input
           register={register}
-          name="email"
-          label="email"
+          name="mail"
+          label="Электронная почта"
           value={user.mail}
           handleUserChange={handleUserChange}
         />
@@ -49,7 +55,7 @@ const SignIn = () => {
         <Input
           register={register}
           name="password"
-          label="password"
+          label="Пароль"
           value={user.password}
           handleUserChange={handleUserChange}
         />
