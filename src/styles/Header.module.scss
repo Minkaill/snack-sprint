@@ -1,0 +1,40 @@
+.header {
+  max-width: 1440px;
+  min-height: 100px;
+  display: flex;
+  border-bottom: 1px solid #4d4d4d;
+  margin: auto;
+  align-items: center;
+  padding: 0 100px;
+
+  .logo {
+    width: 363px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    input {
+      width: 191px;
+      height: 52px;
+      border: none;
+      border-radius: 18px;
+      outline: none;
+      padding: 16px;
+      background: #504b4a;
+      font-size: 18px;
+      color: white;
+    }
+
+    img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  .empty {
+    width: 507px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
